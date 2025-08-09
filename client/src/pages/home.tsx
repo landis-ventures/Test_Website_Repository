@@ -3,7 +3,7 @@ import HeroSection from "@/components/hero-section";
 import ServicesSection from "@/components/services-section";
 import ProcessSection from "@/components/process-section";
 import ValuesSection from "@/components/values-section";
-import ContactSection from "@/components/contact-section-static";
+import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import SEOHead from "@/components/seo-head";
 
