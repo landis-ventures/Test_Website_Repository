@@ -8,7 +8,7 @@ import About from "@/pages/about";
 import ThankYou from "@/pages/thank-you";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
-import Admin from "@/pages/admin";
+import Admin from "@/pages/admin-static";
 import NotFound from "@/pages/not-found";
 
 function Router() {
