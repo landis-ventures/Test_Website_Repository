@@ -79,5 +79,19 @@ If you want to use a custom domain:
 - Users can manually email: info@landisventures.com
 - Consider integrating a form service for better user experience
 
+## Latest Updates (Fixed Blank Page Issue)
+
+The blank page issue has been resolved by:
+- ✅ Configuring Vite to use relative paths (`base: "./"`) for GitHub Pages
+- ✅ Fixed all asset references to use `./assets/` instead of `/assets/`
+- ✅ Added proper form field IDs to prevent browser warnings
+- ✅ Cleaned up build artifacts and removed old asset files
+
+## Quick Build Command
+To rebuild for GitHub Pages, simply run:
+```bash
+node github-pages-build.js
+```
+
 ## Next Steps
-Your static site is now ready for GitHub Pages! The migration preserves all the visual design and functionality while making it compatible with static hosting.
+Your static site is now ready for GitHub Pages! Push the updated `docs/` folder to your repository and your website should load properly. The migration preserves all the visual design and functionality while making it compatible with static hosting.

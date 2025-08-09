@@ -207,6 +207,7 @@ This inquiry was submitted through the Landis Ventures website.
                         <FormLabel className="text-landis-text">First Name *</FormLabel>
                         <FormControl>
                           <Input 
+                            id="firstName"
                             placeholder="Your first name" 
                             {...field} 
                             className="bg-landis-bg border-landis-accent/30 text-landis-text placeholder:text-landis-text/50"
@@ -224,6 +225,7 @@ This inquiry was submitted through the Landis Ventures website.
                         <FormLabel className="text-landis-text">Last Name *</FormLabel>
                         <FormControl>
                           <Input 
+                            id="lastName"
                             placeholder="Your last name" 
                             {...field} 
                             className="bg-landis-bg border-landis-accent/30 text-landis-text placeholder:text-landis-text/50"
@@ -243,6 +245,7 @@ This inquiry was submitted through the Landis Ventures website.
                       <FormLabel className="text-landis-text">Email Address *</FormLabel>
                       <FormControl>
                         <Input 
+                          id="email"
                           type="email" 
                           placeholder="your.email@company.com" 
                           {...field} 
@@ -262,6 +265,7 @@ This inquiry was submitted through the Landis Ventures website.
                       <FormLabel className="text-landis-text">Phone Number</FormLabel>
                       <FormControl>
                         <Input 
+                          id="phone"
                           type="tel" 
                           placeholder="+1 (555) 123-4567" 
                           {...field} 

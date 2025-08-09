@@ -9,9 +9,24 @@ console.log('Building for GitHub Pages...');
 // Set environment variable for GitHub Pages build
 process.env.GITHUB_PAGES = 'true';
 
-// Build the application
+// Build the application with base URL for GitHub Pages
 try {
+  // First, temporarily update vite.config.ts for GitHub Pages
+  let viteConfig = fs.readFileSync('vite.config.ts', 'utf8');
+  const originalConfig = viteConfig;
+  
+  // Add base: "./" for GitHub Pages
+  viteConfig = viteConfig.replace(
+    'export default defineConfig({',
+    'export default defineConfig({\n  base: "./",'
+  );
+  
+  fs.writeFileSync('vite.config.ts', viteConfig);
+  
   execSync('cd client && npm run build', { stdio: 'inherit' });
+  
+  // Restore original config
+  fs.writeFileSync('vite.config.ts', originalConfig);
 } catch (error) {
   console.error('Build failed:', error);
   process.exit(1);
