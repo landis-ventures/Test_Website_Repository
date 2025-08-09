@@ -85,6 +85,7 @@ The blank page issue has been resolved by:
 - ✅ Configuring Vite to use relative paths (`base: "./"`) for GitHub Pages
 - ✅ Fixed all asset references to use `./assets/` instead of `/assets/`
 - ✅ Added proper form field IDs to prevent browser warnings
+- ✅ Fixed CSS @import ordering by moving Google Fonts import to HTML head
 - ✅ Cleaned up build artifacts and removed old asset files
 
 ## Quick Build Command
