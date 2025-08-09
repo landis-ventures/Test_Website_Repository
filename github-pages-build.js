@@ -1,34 +1,51 @@
-import { exec } from 'child_process';
-import { promisify } from 'util';
-import fs from 'fs/promises';
+#!/usr/bin/env node
+
+import { execSync } from 'child_process';
+import fs from 'fs';
 import path from 'path';
 
-const execAsync = promisify(exec);
+console.log('Building for GitHub Pages...');
 
-async function buildForGitHubPages() {
-  console.log('Building for GitHub Pages...');
-  
-  try {
-    // Build the project
-    await execAsync('npm run build:static');
-    
-    // Create docs directory for GitHub Pages
-    await fs.mkdir('docs', { recursive: true });
-    
-    // Copy built files to docs directory
-    await execAsync('cp -r dist/public/* docs/');
-    
-    // Create 404.html for client-side routing
-    const indexContent = await fs.readFile('docs/index.html', 'utf8');
-    await fs.writeFile('docs/404.html', indexContent);
-    
-    console.log('GitHub Pages build complete! Files are in the docs/ directory.');
-    console.log('Configure GitHub Pages to serve from the docs/ folder.');
-    
-  } catch (error) {
-    console.error('Build failed:', error);
-    process.exit(1);
-  }
+// Set environment variable for GitHub Pages build
+process.env.GITHUB_PAGES = 'true';
+
+// Build the application
+try {
+  execSync('cd client && npm run build', { stdio: 'inherit' });
+} catch (error) {
+  console.error('Build failed:', error);
+  process.exit(1);
 }
 
-buildForGitHubPages();
+// Create docs directory if it doesn't exist
+if (!fs.existsSync('docs')) {
+  fs.mkdirSync('docs');
+}
+
+// Copy built files to docs directory
+execSync('cp -r dist/public/* docs/', { stdio: 'inherit' });
+
+// Create 404.html for client-side routing
+fs.copyFileSync('docs/index.html', 'docs/404.html');
+
+// Fix asset paths in HTML files for GitHub Pages
+const fixAssetPaths = (filePath) => {
+  let content = fs.readFileSync(filePath, 'utf8');
+  
+  // Replace absolute asset paths with relative paths
+  content = content.replace(/src="\/assets\//g, 'src="./assets/');
+  content = content.replace(/href="\/assets\//g, 'href="./assets/');
+  
+  // Remove replit dev banner script (not needed for production)
+  content = content.replace(/<script.*replit-dev-banner\.js.*<\/script>/g, '');
+  
+  fs.writeFileSync(filePath, content);
+};
+
+// Fix paths in both HTML files
+fixAssetPaths('docs/index.html');
+fixAssetPaths('docs/404.html');
+
+console.log('✅ GitHub Pages build complete!');
+console.log('📁 Files are ready in the docs/ folder');
+console.log('🚀 Ready to deploy to GitHub Pages');

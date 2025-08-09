@@ -22,6 +22,7 @@ The application now includes multiple pages with enhanced navigation, comprehens
   - Built optimized static assets in docs/ folder
   - Added client-side routing support with 404.html
   - Created comprehensive deployment guide
+  - Fixed asset path issues preventing GitHub Pages deployment (relative paths)
 
 ## User Preferences
 
